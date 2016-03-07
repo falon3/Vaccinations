@@ -76,7 +76,7 @@ angular.module('vaccinations')
                 evt.preventDefault(); // Doesn't work at all
                 window.stop(); // Works in all browsers but IE
                 document.execCommand("Stop"); // Works in IE
-                return false; // Don't even know why it's here. Does nothing.
+                return true; // Don't even know why it's here. Does nothing.
              }
            });
          });

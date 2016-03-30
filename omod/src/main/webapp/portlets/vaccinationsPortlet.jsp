@@ -209,7 +209,7 @@
 
                     <div class="form-group">
                         <label>Adminstration Date</label>
-                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="administration_date"  max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required on-keyup keys="[13]">
+                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="administration_date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" class="form-control" type="date" ng-model="enteredEditFormData.administration_date" placeholder="Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
@@ -477,7 +477,7 @@
 
                     <div class="form-group">
                         <label>Administration Date</label>
-                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date"required on-keyup keys="[13]">
+                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Administration Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid administration date."></feedback>
 
@@ -540,7 +540,7 @@
 
                     <div class="form-group">
                         <label>Manufacture Date</label>
-                        <input name="manufacture_date" class="form-control" type="date"  max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required on-keyup keys="[13]">
+                        <input name="manufacture_date" class="form-control" type="date"  max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
@@ -591,7 +591,7 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Administration Date</label>
-                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required on-keyup keys="[13]">
+                        <input name="administration_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.administration_date" placeholder="Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.administration_date.$error.date" warning="Enter a valid adminstration date."></feedback>
 
@@ -666,7 +666,7 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Manufacture Date</label>
-                        <input name="manufacture_date" class="form-control" type="date" max="{{ getMaxDate()-(24*60*60*1000) | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required on-keyup keys="[13]">
+                        <input name="manufacture_date" class="form-control" type="date" max="{{ getMaxDate() | date:'yyyy-MM-dd' }}" ng-model="enteredAdminFormData.manufacture_date" placeholder="Manufacture Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.manufacture_date.$error.required || form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
@@ -698,7 +698,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-97f84057.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-695b9762.js"></script>
 
   </body>
 </html>

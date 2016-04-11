@@ -5,7 +5,7 @@ angular.module('vaccinations')
     var self = this;
     var promise = $http.get(
         appConstants.URL +
-        '/openmrs/ws/rest/v2/vaccinationsmodule' +
+        '/ws/rest/v2/vaccinationsmodule' +
         '/vaccines/unscheduled')
 
     .success( function(data) {

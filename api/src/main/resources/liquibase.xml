@@ -2645,4 +2645,171 @@
 
     </changeSet>
 
+    <changeSet id="vaccinations-20160325-1" author="Mark Nicoll">
+        <preConditions>
+            <tableExists tableName="vac_vaccines"/>
+        </preConditions>
+        <comment> This code adds two more entries for Albendazole for dose numbers 1 and 2.</comment>
+        <sql>
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`,
+            `body_site_administered`,
+            `min_age`,
+            `max_age`
+            )
+            VALUES (
+            0,
+            'Deworming - Albendazole',
+            '2 years',
+            1,
+            400,
+            '161553',
+            '160240',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            730,
+            null,
+            'Mouth',
+            552,
+            731
+            );
+
+
+
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`,
+            `body_site_administered`,
+            `min_age`,
+            `max_age`
+            )
+            VALUES (
+            0,
+            'Deworming - Albendazole',
+            '2 1/2 years',
+            2,
+            400,
+            '161553',
+            '160240',
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            913,
+            null,
+            'Mouth',
+            731,
+            917
+            );
+            INSERT INTO `openmrs`.`vac_vaccines` (
+            `scheduled`,
+            `name`,
+            `indication_name`,
+            `dose_number`,
+            `dose`,
+            `dosing_unit`,
+            `route`,
+            `creator`,
+            `date_created`,
+            `changed_by`,
+            `date_changed`,
+            `retired`,
+            `retired_by`,
+            `date_retired`,
+            `retire_reason`,
+            `uuid`,
+            `numeric_indication`,
+            `side_administered_left`,
+            `body_site_administered`,
+            `min_age`,
+            `max_age`
+            )
+            VALUES (
+            0,
+            'Hepatitis B (HA)',
+            null,
+            null,
+            null,
+            null,
+            null,
+            1,
+            NOW(),
+            null,
+            null,
+            0,
+            null,
+            null,
+            null,
+            uuid(),
+            null,
+            null,
+            null,
+            42,
+            98
+            );
+            Update vac_vaccines set name = 'Hepatitis B (HB)' where name = 'Hepatitis B (HA)';
+        </sql>
+
+    </changeSet>
+
+    <changeSet id="vaccinations-20160325-2" author="Mark Nicoll">
+        <preConditions>
+            <tableExists tableName="vac_vaccines"/>
+        </preConditions>
+        <comment> deletes duplicate rows in vac_vaccine table</comment>
+        <sql>
+            DELETE FROM vac_vaccines
+            WHERE vaccine_id NOT IN (SELECT *
+            FROM (SELECT MIN(n.vaccine_id)
+            FROM vac_vaccines n
+            GROUP BY n.name,n.dose_number) x);
+        </sql>
+
+    </changeSet>
+
 </databaseChangeLog>

@@ -14,3 +14,7 @@ Install node
 7. To build the OMOD ```$ gulp build```  
 
 If problems occur with node and npm versioning try using node version 0.10.36 & npm version 3.3.8. These are the versions the module was built with. 
+
+###Important
+When serving locally, find and uncomment line "URL: 'http://208.77.196.178:64000',"
+When committing, the line will need to be commented out again 

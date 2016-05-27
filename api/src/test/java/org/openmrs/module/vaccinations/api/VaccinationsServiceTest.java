@@ -206,6 +206,11 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         cal.add(Calendar.DATE, vaccine.getMin_age()); //start date
         cal1.add(Calendar.DATE, vaccine.getMax_age()); //end date
 
+        System.out.println("start should be:"+ cal.getTime().toString());
+        System.out.println("end should be:" + cal1.getTime().toString());
+        System.out.println("start actually:" + vaccination.getCalculatedDateRange()[0].toString());
+        System.out.println("end actually:" + vaccination.getCalculatedDateRange()[1].toString());
+
         assertTrue(cal.getTime().equals(vaccination.getCalculatedDateRange()[0]));
         assertTrue(cal1.getTime().equals(vaccination.getCalculatedDateRange()[1]));
     }

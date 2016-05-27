@@ -25,7 +25,10 @@ import org.openmrs.module.vaccinations.enums.Excuses;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -151,10 +154,11 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
     @Test
     public void shouldSavePatientVaccination(){
         logger.warn("Saving Patient Vaccinations");
+        Date[] calculatedDateRange = {new Date(), new Date()};
 
         //Acquiring an unscheduled vaccination
         Vaccine vaccine = Context.getService(VaccinesService.class).getVaccineByUuid("d5f0f111-0a36-11e5-ba5b-005056be863d");
-        Vaccination vaccination = vaccinationsService.vaccineToVaccination(vaccine, new Date());
+        Vaccination vaccination = vaccinationsService.vaccineToVaccination(vaccine, calculatedDateRange);
 
         //TODO: Ensure that adverse reaction is automatically assigned on constructor call
         vaccination.setPatient_id(3);
@@ -180,5 +184,29 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         assertEquals(new Double(500.00), vaccination2.getDose());
         assertTrue(vaccination2.getSide_administered_left());
         //assertEquals(new Integer(2), vaccination.getId());
+    }
+
+    @Test
+    public void shouldCalculateDateRangeForVaccination(){
+        logger.debug("Testing calculated date ranges");
+        Date fakeBirthday = new Date(0);
+        Calendar cal = Calendar.getInstance();
+        try {
+            fakeBirthday = new SimpleDateFormat("dd-mm-yyyy").parse("01-01-2016");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        cal.setTime(fakeBirthday);
+        Calendar cal1 = cal;
+
+        Date[] calculatedDateRange = {new Date(), new Date()};
+        Vaccine vaccine = Context.getService(VaccinesService.class).getVaccineByUuid("d5f0b023-0a36-11e5-ba5b-005056be863d");
+        Vaccination vaccination = vaccinationsService.vaccineToVaccination(vaccine, calculatedDateRange);
+
+        cal.add(Calendar.DATE, vaccine.getMin_age()); //start date
+        cal1.add(Calendar.DATE, vaccine.getMax_age()); //end date
+
+        assertTrue(cal.getTime().equals(vaccination.getCalculatedDateRange()[0]));
+        assertTrue(cal1.getTime().equals(vaccination.getCalculatedDateRange()[1]));
     }
 }

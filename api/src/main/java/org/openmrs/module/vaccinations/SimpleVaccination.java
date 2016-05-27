@@ -31,6 +31,16 @@ public class SimpleVaccination implements Serializable {
     private String gName = "";
     private String lName = "";
 
+	public Date[] getCalculatedDateRange() {
+		return calculatedDateRange;
+	}
+
+	public void setCalculatedDateRange(Date[] calculatedDateRange) {
+		this.calculatedDateRange = calculatedDateRange;
+	}
+
+	private Date [] calculatedDateRange;
+
 	private Integer id;
     private Date scheduled_date;
 	private String name;
@@ -72,6 +82,7 @@ public class SimpleVaccination implements Serializable {
     public SimpleVaccination(Vaccination vaccination){
         if (!(null == vaccination)) {
             this.id = vaccination.getId();
+			this.calculatedDateRange = vaccination.getCalculatedDateRange();
             this.scheduled_date = vaccination.getScheduled_date();
             this.name = vaccination.getName();
             this.indication_name = vaccination.getIndication_name();

@@ -66,11 +66,11 @@ public interface VaccinationsService extends OpenmrsService {
 	@Authorized( {PrivilegeConstants.VIEW_VACCINATIONS, PrivilegeConstants.VIEW_VACCINES, PrivilegeConstants.VIEW_ADVERSE_REACTIONS} )
 	public Vaccination getVaccinationByUuid(String uuid) throws APIException;
 
-	public Date calculateScheduledDate(Date patientBDay, Vaccine vaccine) throws APIException;
+	public Date [] calculateDateRange(Date patientBDay, Vaccine vaccine) throws APIException;
 
     public Date getPtBDay(Integer patientId) throws APIException;
 
 	public List<SimpleVaccination> simplifyVaccinations(List<Vaccination> vaccines) throws APIException;
 
-	public Vaccination vaccineToVaccination(Vaccine vaccine, Date calculatedScheduledDate) throws APIException;
+	public Vaccination vaccineToVaccination(Vaccine vaccine, Date [] calculatedDateRange) throws APIException;
 }

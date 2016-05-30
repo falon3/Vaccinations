@@ -188,7 +188,7 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
 
     @Test
     public void shouldCalculateDateRangeForVaccination(){
-        logger.debug("Testing calculated date ranges");
+        logger.error("Testing calculated date ranges");
         Date fakeBirthday = new Date(0);
         Calendar cal = Calendar.getInstance();
         try {
@@ -197,21 +197,22 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
             e.printStackTrace();
         }
         cal.setTime(fakeBirthday);
-        Calendar cal1 = cal;
+        logger.error("start first should be:"+ cal.getTime().toString());
+        Calendar cal1 = Calendar.getInstance();
+        cal1.setTime(fakeBirthday);
 
-        Date[] calculatedDateRange = {new Date(), new Date()};
         Vaccine vaccine = Context.getService(VaccinesService.class).getVaccineByUuid("d5f0b023-0a36-11e5-ba5b-005056be863d");
-        Vaccination vaccination = vaccinationsService.vaccineToVaccination(vaccine, calculatedDateRange);
+        Date[] calculatedDateRange = vaccinationsService.calculateDateRange(fakeBirthday, vaccine);
 
         cal.add(Calendar.DATE, vaccine.getMin_age()); //start date
         cal1.add(Calendar.DATE, vaccine.getMax_age()); //end date
 
-        System.out.println("start should be:"+ cal.getTime().toString());
-        System.out.println("end should be:" + cal1.getTime().toString());
-        System.out.println("start actually:" + vaccination.getCalculatedDateRange()[0].toString());
-        System.out.println("end actually:" + vaccination.getCalculatedDateRange()[1].toString());
+//        logger.error("start should be:"+ cal.getTime().toString());
+//        logger.error("start actually:" + calculatedDateRange[0].toString());
+//        logger.error("end should be:" + cal1.getTime().toString());
+//        logger.error("end actually:" + calculatedDateRange[1].toString());
 
-        assertTrue(cal.getTime().equals(vaccination.getCalculatedDateRange()[0]));
-        assertTrue(cal1.getTime().equals(vaccination.getCalculatedDateRange()[1]));
+        assertTrue(cal.getTime().equals(calculatedDateRange[0]));
+        assertTrue(cal1.getTime().equals(calculatedDateRange[1]));
     }
 }

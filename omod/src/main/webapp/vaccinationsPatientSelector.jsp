@@ -2,6 +2,8 @@
 
 <openmrs:require privilege="Manage Vaccinations" otherwise="/login.htm" redirect="/index.htm" />
 
+<openmrs:htmlInclude file="/scripts/jquery/jquery-1.3.2.min.js" />
+
 <%@ include file="/WEB-INF/template/header.jsp"%>
 
 

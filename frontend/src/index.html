@@ -281,13 +281,13 @@
 
                     <div class="form-group">
                         <label>Manufacture Date</label>
-                        <input  ng-disabled="!isUnadministerable() && !getAdminStatus()" name="manufacture_date" class="form-control" type="date" ng-model="enteredEditFormData.manufacture_date" placeholder="Manufacture Date" on-keyup keys="[13]">
+                        <input  ng-disabled="!isUnadministerable() && !getAdminStatus()" name="manufacture_date" class="form-control" type="date" max="9999-12-31" ng-model="enteredEditFormData.manufacture_date" placeholder="Manufacture Date" on-keyup keys="[13]">
                     </div>
                    <feedback warn="form.manufacture_date.$error.date" warning="Enter a valid manufacture date."></feedback>
 
                     <div class="form-group">
                         <label>Expiry Date</label>
-                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="expiry_date" class="form-control" type="date" ng-model="enteredEditFormData.expiry_date" placeholder="Expiry Date" on-keyup keys="[13]">
+                        <input ng-disabled="!isUnadministerable() && !getAdminStatus()" name="expiry_date" class="form-control" type="date"  max="9999-12-31" ng-model="enteredEditFormData.expiry_date" placeholder="Expiry Date" on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
@@ -329,7 +329,7 @@
 
                     <div class="form-group">
                         <label>Date</label>
-                        <input name="date" class="form-control" type="date" ng-model="enteredAdverseFormData.date" placeholder="Date" required on-keyup keys="[13]">
+                        <input name="date" class="form-control" type="date"  max="9999-12-31" ng-model="enteredAdverseFormData.date" placeholder="Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.date.$error.date" warning="Enter a valid reaction date."></feedback>
 
@@ -466,7 +466,7 @@
 
                     <div class="form-group">
                         <label>Rescheduled Date</label>
-                        <input name="rescheduled_date" class="form-control" type="date" ng-model="enteredAdminFormData.scheduled_date" placeholder="Rescheduled Date"required on-keyup keys="[13]">
+                        <input name="rescheduled_date" class="form-control" type="date"  max="9999-12-31" ng-model="enteredAdminFormData.scheduled_date" placeholder="Rescheduled Date"required on-keyup keys="[13]">
                     </div>
                     <feedback warn="rescheduleForm.rescheduled_date.$error.date" warning="Enter a valid rescheduled date."></feedback>
 
@@ -554,7 +554,7 @@
 
                     <div class="form-group">
                         <label>Expiry Date</label>
-                        <input name="expiry_date" class="form-control" type="date" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
+                        <input name="expiry_date" class="form-control" type="date"  max="9999-12-31" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.expiry_date.$error.required || form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 
@@ -611,7 +611,7 @@
 
                     <div ng-if="enteredAdminFormData._scheduling" class="form-group">
                         <label>Scheduled Date</label>
-                        <input name="scheduled_date" class="form-control" type="date" ng-model="enteredAdminFormData.scheduled_date" placeholder="Scheduled Date" required on-keyup keys="[13]">
+                        <input name="scheduled_date" class="form-control" type="date" max="9999-12-31" ng-model="enteredAdminFormData.scheduled_date" placeholder="Scheduled Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.scheduled_date.$error.date" warning="Enter a valid scheduled date."></feedback>
 
@@ -680,7 +680,7 @@
 
                     <div ng-if="enteredAdminFormData._administering" class="form-group">
                         <label>Expiry Date</label>
-                        <input name="expiry_date" class="form-control" type="date" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
+                        <input name="expiry_date" class="form-control" type="date" max="9999-12-31" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="enteredAdminFormData._administering && form.expiry_date.$error.required || form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
 

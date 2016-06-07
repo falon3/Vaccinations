@@ -197,7 +197,7 @@ angular.module('vaccinations')
             if (vaccination.adverse_reaction) {
                 $http.put(
                     appConstants.URL +
-                    '/openmrs/ws/rest/v2/vaccinationsmodule/' +
+                    '/ws/rest/v2/vaccinationsmodule/' +
                     'adversereactions/' +
                     reaction.id +
                     'patient/' +
@@ -218,7 +218,7 @@ angular.module('vaccinations')
             } else {
                 $http.post(
                     appConstants.URL +
-                    '/openmrs/ws/rest/v2/vaccinationsmodule/' +
+                    '/ws/rest/v2/vaccinationsmodule/' +
                     'adversereactions/' +
                     'patient/' +
                     appConstants.getPatientId() + '/' +

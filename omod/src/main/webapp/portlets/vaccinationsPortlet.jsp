@@ -1,3 +1,4 @@
+<%@ include file="/WEB-INF/template/include.jsp"%>
 <!doctype html>
 <html class="no-js">
   <head>
@@ -6,18 +7,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
 
-    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
-    <link rel="stylesheet" href="app/vendor.css">
-    <!-- bower:css -->
-    <!-- run `gulp wiredep` to automaticaly populate bower styles dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-dbd74377.css">
 
-    <!-- build:css({.tmp/serve,src}) styles/app.css -->
-    <!-- inject:css -->
-    <!-- css files will be automaticaly insert here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-3a515fa3.css">
   </head>
   <body>
 
@@ -704,21 +696,9 @@
 
     <!-- /TEMPLATES -->
 </div>
-    <!-- build:js(src) scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- run `gulp wiredep` to automaticaly populate bower script dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
 
-    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-    <!-- inject:js -->
-    <!-- js files will be automaticaly insert here -->
-    <!-- endinject -->
-
-    <!-- inject:partials -->
-    <!-- angular templates will be automatically converted in js and inserted here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e7c2193b.js"></script>
 
   </body>
 </html>

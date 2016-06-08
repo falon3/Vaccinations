@@ -253,6 +253,9 @@ public class SimpleVaccination implements Serializable {
 	}
 
 	public void setScheduled_date(Date scheduled_date) {
+		if (scheduled_date == null){
+			this.scheduled_date = null;
+		}
 		this.scheduled_date = scheduled_date;
 	}
 

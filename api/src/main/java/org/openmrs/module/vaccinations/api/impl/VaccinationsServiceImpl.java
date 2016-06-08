@@ -193,7 +193,7 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 		newVaccination.setDose(vaccine.getDose());
 		newVaccination.setDosing_unit(vaccine.getDosing_unit());
 		newVaccination.setRoute(vaccine.getRoute());
-		newVaccination.setScheduled(vaccine.getScheduled());
+		//newVaccination.setScheduled(vaccine.getScheduled());
 		newVaccination.setDose_number(vaccine.getDose_number());
 
 		if (vaccine.getSide_administered_left() != null){
@@ -204,6 +204,10 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 		//Assign new calculated date range
 		//newVaccination.setScheduled_date(calculatedDateRange[0]);
 		newVaccination.setCalculatedDateRange(calculatedDateRange);
+
+		//set scheduled to flag date so knows to use calculated date range
+		newVaccination.setScheduled_date(null);
+
 
 		newVaccination.setAdministered(false);
 		newVaccination.setAdverse_reaction_observed(false);

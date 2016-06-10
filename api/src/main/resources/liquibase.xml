@@ -2812,4 +2812,16 @@
 
     </changeSet>
 
+    <changeSet id="vaccinations-20150610-1" author="Falon Scheers">
+        <preConditions>
+            <tableExists tableName="vac_vaccines"/>
+        </preConditions>
+        <comment> BUGFIX: swaps the min and max values for indication dates of vaccines with one date and set max to 0 as flag</comment>
+        <sql>
+            UPDATE openmrs.vac_vaccines
+            SET min_age = max_age, max_age = 0
+            WHERE (indication_name REGEXP '^[0-9]');
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>

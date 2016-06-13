@@ -39,6 +39,16 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
 
 	private Integer id;
     private Date scheduled_date;
+
+    public Date[] getCalculatedDateRange() {
+        return calculatedDateRange;
+    }
+
+    public void setCalculatedDateRange(Date[] calculatedDateRange) {
+        this.calculatedDateRange = calculatedDateRange;
+    }
+
+    private Date [] calculatedDateRange;
 	private String name;
 	private String indication_name;
 	private Double dose;
@@ -87,7 +97,7 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
             Location userLocus = Context.getLocationService().getLocation(Integer.parseInt(Context.getAuthenticatedUser().getUserProperty(Constants.LOCATIONPROPERTY)));
 
             this.id = simpleVaccination.getId();
-
+            this.calculatedDateRange = simpleVaccination.getCalculatedDateRange();
             this.scheduled_date = simpleVaccination.getScheduled_date();
             this.name = simpleVaccination.getName();
             this.indication_name = simpleVaccination.getIndication_name();
@@ -95,7 +105,6 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
             this.dosing_unit = simpleVaccination.getDosing_unit();
             this.route = simpleVaccination.getRoute();
             this.scheduled = simpleVaccination.getScheduled();
-            this.scheduled_date = simpleVaccination.getScheduled_date();
             this.vaccine = new Vaccine(simpleVaccination.getSimpleVaccine());
             if (simpleVaccination.getAdverse_reaction_observed())
                 this.adverse_reaction = new AdverseReaction(simpleVaccination.getSimpleAdverse_reaction());

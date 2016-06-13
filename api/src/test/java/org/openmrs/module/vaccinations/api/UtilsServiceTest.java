@@ -85,8 +85,9 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
     @Test
     public void shouldCreateNewAuditLogRecordAndLineItems(){
         //Acquiring an unscheduled vaccination
+        Date [] DateRange = {new Date(), new Date()};
         Vaccine vaccine = Context.getService(VaccinesService.class).getVaccineByUuid("d5f0f111-0a36-11e5-ba5b-005056be863d");
-        Vaccination vaccination = vaccinationsService.vaccineToVaccination(vaccine, new Date());
+        Vaccination vaccination = vaccinationsService.vaccineToVaccination(vaccine, DateRange);
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
 
@@ -174,8 +175,9 @@ public class UtilsServiceTest extends BaseModuleContextSensitiveTest {
     @Test
     public void shouldNotCreateNewAuditLogRecordAndLineItems(){
         //Acquiring an unscheduled vaccination
+        Date [] DateRange = {new Date(), new Date()};
         Vaccine vaccine = Context.getService(VaccinesService.class).getVaccineByUuid("d5f0f111-0a36-11e5-ba5b-005056be863d");
-        Vaccination vaccination = vaccinationsService.vaccineToVaccination(vaccine, new Date());
+        Vaccination vaccination = vaccinationsService.vaccineToVaccination(vaccine, DateRange);
         Calendar c = Calendar.getInstance();
         c.setTime(new Date());
 

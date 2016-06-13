@@ -114,7 +114,7 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 
     private Vaccination createVaccinationTemplate(Vaccine vaccine, int patientId){
         Date today = new Date();
-        Date calculatedScheduledDate = new Date();
+        Date [] calculatedDateRange = {new Date(),new Date()};
         Date patientBDay = getPtBDay(patientId);
         Calendar cal1 = Calendar.getInstance();
         Calendar cal2 = Calendar.getInstance();
@@ -128,8 +128,8 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
         cal2.add(Calendar.DATE, vaccine.getMax_age());
 
         //Vaccine to Vaccination
-        calculatedScheduledDate = calculateScheduledDate(patientBDay, vaccine);
-        Vaccination vaccinationTemplate = vaccineToVaccination(vaccine, calculatedScheduledDate);
+        calculatedDateRange = calculateDateRange(patientBDay, vaccine);
+        Vaccination vaccinationTemplate = vaccineToVaccination(vaccine, calculatedDateRange);
 
         if (today.before(cal1.getTime()))
         {
@@ -160,23 +160,30 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 	}
 
     @Override
-	public Date calculateScheduledDate(Date patientBDay, Vaccine vaccine) throws APIException{
-		Calendar cal = Calendar.getInstance();
+	public Date [] calculateDateRange(Date patientBDay, Vaccine vaccine) throws APIException{
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		Date [] calculatedDateRange = {new Date(), new Date()};
 
-		//Calculate scheduled date from birthday and numeric indication.
+		//Calculate scheduled date range from birthday and numeric indications.
 		int minAge = 0;
+		int maxAge = 0;
 		if (vaccine.getNumeric_indication() != null)
 		{
             minAge = vaccine.getMin_age();
+			maxAge = vaccine.getMax_age();
 		}
-		cal.setTime(patientBDay);
-		cal.add(Calendar.DATE, minAge);
-		Date calculatedScheduledDate = cal.getTime();
-		return calculatedScheduledDate;
+		cal1.setTime(patientBDay);
+		cal2.setTime(patientBDay);
+		cal1.add(Calendar.DATE, minAge);
+		cal2.add(Calendar.DATE, maxAge);
+		calculatedDateRange[0] = cal1.getTime();
+		calculatedDateRange[1] = cal2.getTime();
+		return calculatedDateRange;
 	}
 
 	@Override
-	public Vaccination vaccineToVaccination(Vaccine vaccine, Date calculatedScheduledDate) throws APIException {
+	public Vaccination vaccineToVaccination(Vaccine vaccine, Date [] calculatedDateRange) throws APIException {
 		//create a new vaccination using vaccine as a template
 		Vaccination newVaccination = new Vaccination();
 		newVaccination.setVaccine(vaccine);
@@ -186,7 +193,7 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 		newVaccination.setDose(vaccine.getDose());
 		newVaccination.setDosing_unit(vaccine.getDosing_unit());
 		newVaccination.setRoute(vaccine.getRoute());
-		newVaccination.setScheduled(vaccine.getScheduled());
+		//newVaccination.setScheduled(vaccine.getScheduled());
 		newVaccination.setDose_number(vaccine.getDose_number());
 
 		if (vaccine.getSide_administered_left() != null){
@@ -194,8 +201,13 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 		}
 		newVaccination.setBody_site_administered(vaccine.getBody_site_administered());
 
-		//Assign calculated scheduled date
-		newVaccination.setScheduled_date(calculatedScheduledDate);
+		//Assign new calculated date range
+		//newVaccination.setScheduled_date(calculatedDateRange[0]);
+		newVaccination.setCalculatedDateRange(calculatedDateRange);
+
+		//set scheduled to flag date so knows to use calculated date range
+		newVaccination.setScheduled_date(null);
+
 
 		newVaccination.setAdministered(false);
 		newVaccination.setAdverse_reaction_observed(false);

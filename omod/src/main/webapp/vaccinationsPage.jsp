@@ -22,8 +22,8 @@ table.al td { border-left: 1px solid #ddd;padding-left; 10px;text-align: top; }
 table.al td:first-child { border-left: none;text-align: top; }
 </style>
 
-<div style="margin: auto;padding-left:5%;">
-<table style="padding: 10px;" class="legend-wrapper">
+<div style="text-align: center;padding-left:5%;">
+<table style="margin: auto;padding: 10px;" class="legend-wrapper">
       <tr><td style="text-align: right;">Gender : </td><td> ${patientGender} </td></tr>
       <tr><td style="text-align: right;">Age : </td><td> ${patientAge} </td></tr>
       <tr><td style="text-align: right;">Birthdate : </td><td> ${patientBirthDate} </td></tr>

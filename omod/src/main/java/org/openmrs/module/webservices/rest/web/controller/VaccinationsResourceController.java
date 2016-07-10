@@ -70,6 +70,17 @@ public class VaccinationsResourceController {// extends MainResourceController {
 	@RequestMapping(value = "/vaccines/unscheduled", method = RequestMethod.GET)
 	@ResponseBody
 	public List<SimpleVaccine> getUnscheduledVaccinesSimple() {
+		//sort vaccines by dose number
+		/*
+		List<SimpleVaccine> vaclist = Context.getService(VaccinesService.class).getUnscheduledVaccinesSimple(false);
+		List<List<SimpleVaccine>> sortlist = new ArrayList<List<SimpleVaccine>>();
+		for(int i = 0; i < vaclist.size();i++){
+			if(){
+				sortlist.get(i).add(new ArrayList<SimpleVaccine>());
+			}
+
+		}
+		*/
 		return Context.getService(VaccinesService.class).getUnscheduledVaccinesSimple(false);
 	}
 
@@ -95,6 +106,17 @@ public class VaccinationsResourceController {// extends MainResourceController {
     public List<Object> getVaccinationsAndEnums(@PathVariable int patientId) {
         List<Object> objects = new ArrayList<Object>();
         List<SimpleVaccination> simpleVaccinations = Context.getService(VaccinationsService.class).combineVaccinesAndVaccinationsByPatientIdSimple(patientId);
+		//create list of default vaccines
+		List<SimpleVaccine> simpleVaccine = new ArrayList<SimpleVaccine>();
+		List<SimpleVaccine> vaccinelist = Context.getService(VaccinesService.class).getAllVaccinesSimple(false);
+		for(int i = 0; i < simpleVaccinations.size();i++){
+			for(int j = 0; j < vaccinelist.size();j++){
+				if(simpleVaccinations.get(i).getName().equals(vaccinelist.get(j).getName())){
+					simpleVaccine.add(vaccinelist.get(j));
+				}
+			}
+		}
+
         List<Manufacturer> manufacturers = Context.getService(UtilsService.class).getAllManufacturers(false);
 
 //        List<RouteMapping> routeMappingList = new ArrayList<RouteMapping>();
@@ -117,6 +139,7 @@ public class VaccinationsResourceController {// extends MainResourceController {
         objects.add(manufacturers);
         objects.add(new Excuses[] {Excuses.Expired, Excuses.OutOfStock, Excuses.WrongVaccine, Excuses.NoExcuse});
         objects.add(new RouteMapEnum[] {RouteMapEnum.Intradermal, RouteMapEnum.Intramuscular, RouteMapEnum.Oral, RouteMapEnum.Intranasal, RouteMapEnum.Subcutaneous, RouteMapEnum.Transdermal});
+		objects.add(simpleVaccine);
         //Context.clearSession();
         return objects;
     }

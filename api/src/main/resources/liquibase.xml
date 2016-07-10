@@ -2824,4 +2824,16 @@
         </sql>
     </changeSet>
 
+    <changeSet id="vaccinations-20160617-1" author="Mark Nicoll">
+        <preConditions>
+                <tableExists tableName="vac_vaccines"/>
+        </preConditions>
+        <comment>BUGFIX: make the to administer date value consistant for Bacillus Calmette-Guerin BCG seccond dose </comment>
+        <sql>
+            UPDATE openmrs.vac_vaccines
+            SET indication_name = '52 weeks'
+            Where indication_name = 'older than 1yo';
+        </sql>
+    </changeSet>
+
 </databaseChangeLog>

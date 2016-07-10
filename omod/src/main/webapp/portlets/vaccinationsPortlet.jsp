@@ -16,7 +16,7 @@
 <div id="appcontainer" class="appcontainer" ng-app="vaccinations">
 <!-- <div id="appcontainer"> -->
 
-    <div class="container" ng-controller="MainController">
+    <div class="container" ng-controller="MainController" style="width: 900px;">
 
         <loader></loader>
         <!-- ADD SECTION -->
@@ -263,6 +263,7 @@
                         <option value=""></option>
                         </select>
                     </div>
+
                     <feedback warn="form.manufacturer.$error.required" warning="Enter a valid manufacturer. For example Pfizer, GlaxoSmithKline..."></feedback>
 
                     <div class="form-group">
@@ -400,10 +401,24 @@
                     <span class="indication-date">{{ ::enteredAdminFormData.indication_name | date: 'mediumDate' }}</span>
                 </span>
 
-                <span class="header-info">
-                    <span class="scheduled-label">To be administered on: </span>
-                    <span class="scheduled-date">{{ ::enteredAdminFormData.scheduled_date | date: 'mediumDate' }}</span>
+                <span class="header-info"> <!-- / if not rescheduled then display calculated range else display scheduled date -->
+
+                    <span ng-if="enteredAdminFormData.scheduled_date.getMilliseconds() == 0 && enteredAdminFormData.calculatedDateRange[1] > enteredAdminFormData.calculatedDateRange[0]" >
+                        <span class="scheduled-label">administer between: </span>
+                        <span class="scheduled-date"> {{ enteredAdminFormData.calculatedDateRange[0] | date: 'longDate' }} and {{ enteredAdminFormData.calculatedDateRange[1] | date: 'longDate' }} </span>
+                    </span>
+                    <span ng-if="enteredAdminFormData.scheduled_date.getMilliseconds() == 0 && enteredAdminFormData.calculatedDateRange[1] <= enteredAdminFormData.calculatedDateRange[0]" >
+                        <span class="scheduled-label">administer after: </span>
+                        <span class="scheduled-date"> {{ enteredAdminFormData.calculatedDateRange[0] | date: 'longDate' }} </span>
+                    </span>
+
+                    <!-- / if not rescheduled then display calculated range else display scheduled date -->
+                    <span ng-if="enteredAdminFormData.scheduled_date.getTime()" >
+                        <span class="scheduled-label">To be administered on: </span>
+                        <span class="scheduled-date"> {{ enteredAdminFormData.scheduled_date | date: 'longDate'}} </span>
+                    </span>
                 </span>
+
                 <div class="btn-group pull-right" role="group" aria-label="...">
                     <button type="button" class="btn btn-info" ng-class="{ 'active': state.administerFormOpen }" ng-click="toggleAdministerForm()" on-keyup keys="[13]">Administer</button>
                     <button type="button" class="btn btn-reschedule" ng-click="toggleRescheduleForm()" on-keyup keys="[13]">Reschedule</button>
@@ -698,7 +713,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e7c2193b.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-05d4164c.js"></script>
 
   </body>
 </html>

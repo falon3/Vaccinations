@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The main controller.
@@ -54,6 +55,8 @@ public class  VaccinationsModuleManageController {
     @RequestMapping(value = "/module/vaccinations/portlets/vaccinationsPortlet", method = RequestMethod.GET)
     public void vaccinationsPortletController(ModelMap model) {
         model.addAttribute("user", Context.getAuthenticatedUser());
+
+
     }
 
     @RequestMapping(value = "/module/vaccinations/vaccinationsPage", method = RequestMethod.GET)
@@ -78,33 +81,55 @@ public class  VaccinationsModuleManageController {
         model.addAttribute("patientName", patientName);
         model.addAttribute("patientGender",person.getGender());
         //format patient birthdate
-        String pattern = "dd MMM, yyyy";
-        SimpleDateFormat format = new SimpleDateFormat(pattern);
+
         Date birthdate = person.getBirthdate();
         Date now = new Date();
+        String pattern = "dd MMM, yyyy";
+        SimpleDateFormat format = new SimpleDateFormat(pattern);
+
+        createBirthdateString(model,now,birthdate);
+
         String birthdayout = format.format(person.getBirthdate());
-        Calendar startCalendar = new GregorianCalendar();
+        model.addAttribute("patientBirthDate",birthdayout);
+
+        model.addAttribute("user", Context.getAuthenticatedUser());
+    }
+
+    public void createBirthdateString(ModelMap model,Date now,Date birthdate){
+        Calendar startCalendar = Calendar.getInstance();
         startCalendar.setTime(birthdate);
-        Calendar endCalendar = new GregorianCalendar();
+        Calendar endCalendar = Calendar.getInstance();
         endCalendar.setTime(now);
         int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
         int diffMonth = diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+        int diffWeek = daysBetween(now,birthdate)/7;
         if(diffYear > 0){
+            //deal with years
             if(diffYear == 1) {
                 model.addAttribute("patientAge",diffYear+" Year");
             }else{
                 model.addAttribute("patientAge",diffYear+" Years");
             }
+        }else if(diffWeek <= 14){
+            //deal with weeks
+            int weektotal = diffWeek;
+            if(diffWeek == 1){
+                model.addAttribute("patientAge",weektotal+" Week");
+            }else{
+                model.addAttribute("patientAge",weektotal+" Weeks");
+            }
         }else{
+            //deal with months
             if(diffMonth == 1) {
                 model.addAttribute("patientAge", diffMonth + " Month");
             }else{
                 model.addAttribute("patientAge", diffMonth + " Months");
             }
         }
-        model.addAttribute("patientBirthDate",birthdayout);
+    }
 
-        model.addAttribute("user", Context.getAuthenticatedUser());
+    public int daysBetween(Date d1,Date d2){
+        return (int)((d2.getTime()-d1.getTime())/(1000*60*60*24));
     }
 
 }

@@ -1,4 +1,5 @@
 <!doctype html>
+<%@ include file="/WEB-INF/template/include.jsp"%>
 <html class="no-js">
   <head>
     <meta charset="utf-8">
@@ -28,6 +29,7 @@
 
         <loader></loader>
         <!-- ADD SECTION -->
+        <openmrs:portlet url="patientHeader" id="formsPatientdHeader" patientId="${patientId}" />
         <div class="add-vaccination-wrapper">
             <!--LEGEND-->
             <div class="legend-wrapper">

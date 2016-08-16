@@ -8,7 +8,7 @@ Install node
 1. Clone the project
 
 2. ```$ cd frontend```
- 
+
 3. ```$ npm install``` If you have problems try  ```$ sudo npm install```
 
 4. ```$ bower install```
@@ -26,3 +26,4 @@ When serving locally, find and uncomment line ```URL: 'http://208.77.196.178:650
 Then also comment out the line below it ```URL: tempURL,```    
 
 When committing, the line will need to be commented out again
+

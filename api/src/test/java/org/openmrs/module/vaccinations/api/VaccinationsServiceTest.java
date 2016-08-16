@@ -216,3 +216,4 @@ public class  VaccinationsServiceTest extends BaseModuleContextSensitiveTest {
         assertTrue(cal1.getTime().equals(calculatedDateRange[1]));
     }
 }
+

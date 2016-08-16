@@ -17,7 +17,9 @@
 <div id="appcontainer" class="appcontainer" ng-app="vaccinations">
 <!-- <div id="appcontainer"> -->
 
+
     <div class="container" ng-controller="MainController" >
+
 
         <loader></loader>
         <!-- ADD SECTION -->
@@ -715,7 +717,11 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
 
+<<<<<<< HEAD
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-b307cbc5.js"></script>
+=======
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-05d4164c.js"></script>
+>>>>>>> 81878b2ed89aefef913bd86f513d672e2b2eeec7
 
   </body>
 </html>

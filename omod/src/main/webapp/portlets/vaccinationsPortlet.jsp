@@ -1,6 +1,5 @@
 <%@ include file="/WEB-INF/template/include.jsp"%>
 <!doctype html>
-<%@ include file="/WEB-INF/template/include.jsp"%>
 <html class="no-js">
   <head>
     <meta charset="utf-8">
@@ -10,21 +9,21 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-dbd74377.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-8e16d91e.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-ab025e76.css">
   </head>
   <body>
 
 <div id="appcontainer" class="appcontainer" ng-app="vaccinations">
 <!-- <div id="appcontainer"> -->
 
-
     <div class="container" ng-controller="MainController" >
 
 
         <loader></loader>
         <!-- ADD SECTION -->
-        <openmrs:portlet url="patientHeader" id="formsPatientdHeader" patientId="${patientId}" />
+
         <div class="add-vaccination-wrapper">
+            <openmrs:portlet url="patientHeader" id="formsPatientdHeader" patientId="${patientId}" />
             <!--LEGEND-->
             <div class="legend-wrapper">
                 <div><span style="padding-left: 22px; font-weight: bold;">Legend</span></div>
@@ -504,7 +503,7 @@
                         <label>Course Number</label>
                         <input disabled="disabled" class="form-control" type="text" ng-model="enteredAdminFormData.dose_number" placeholder="Dose in Course" on-keyup keys="[13]">
                     </div>
-<div> ***</div>
+
                     <div class="form-group">
                         <label>Dose</label>
                         <input disabled="disabled" name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" min="0" required on-keyup keys="[13]">
@@ -630,7 +629,6 @@
                         <label>Course Number</label>
                         <input disabled="disabled" class="form-control" type="text" ng-model="enteredAdminFormData.dose_number" placeholder="Dose In Course" on-keyup keys="[13]">
                     </div>
-<div> ***</div>
                     <div class="form-group">
                         <label>Dose</label>
                         <input disabled="disabled" name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" ng-required="enteredAdminFormData._administering" min="0" on-keyup keys="[13]">
@@ -717,11 +715,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
 
-<<<<<<< HEAD
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-b307cbc5.js"></script>
-=======
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-05d4164c.js"></script>
->>>>>>> 81878b2ed89aefef913bd86f513d672e2b2eeec7
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-bb4053d2.js"></script>
 
   </body>
 </html>

@@ -355,6 +355,13 @@ button {
     max-height: 0px;
 }
 
+// when select options are frozen remove arrows
+select[disabled] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: '';
+}
 
 // Generic hide class
 .hidden {

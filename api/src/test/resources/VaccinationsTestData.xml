@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <dataset>
-	<vac_vaccines vaccine_id="34" scheduled="1" name="Bacillus Calmette-Guerin (BSG)" body_site_administered="b" side_administered_left="1" indication_name="birth to 1yo" dose="0.05" dosing_unit="162263" route="intra-dermal left forearm" dose_number="1" numeric_indication = "1" max_age ="270" min_age ="0"  creator="1" date_created="2005-02-24 00:00:00.0" retired="false" uuid="d5f0b023-0a36-11e5-ba5b-005056be863d"/>
+    <vac_vaccines vaccine_id="34" scheduled="1" name="Bacillus Calmette-Guerin (BSG)" body_site_administered="b" side_administered_left="1" indication_name="birth to 1yo" dose="0.05" dosing_unit="162263" route="intra-dermal left forearm" dose_number="1" numeric_indication = "1" max_age ="270" min_age ="0"  creator="1" date_created="2005-02-24 00:00:00.0" retired="false" uuid="d5f0b023-0a36-11e5-ba5b-005056be863d"/>
+
     <vac_vaccines vaccine_id="36" scheduled="0" name="Bacillus Calmette-Guerin (BSG)" body_site_administered="a" dosing_unit="162263" creator="1" date_created="2005-02-24 00:00:00.0" retired="false" uuid="d5f0f111-0a36-11e5-ba5b-005056be863d"/>
 
     <vac_vaccinations vaccination_id="1" vaccine_id="36" scheduled="0" name="Bacillus Calmette-Guerin (BSG)" indication_name="birth to 1yo" dose="0.1" dosing_unit="162263" route="intra-dermal left forearm" administered="true" administration_date="2015-06-03 20:06:07" body_site_administered="b" dose_number="1" lot_number="b" manufacturer="b" manufacture_date="2015-06-03 20:06:07" expiry_date="2015-06-03 20:06:07" adverse_reaction="false" adverse_reaction_id="1" patient_id="3" creator="5507" date_created="2015-06-08 15:38:50" retired="false" uuid="6304a894-7806-44ad-97c6-0d1e04c28c22" location_id="1" side_administered_left="0"/>

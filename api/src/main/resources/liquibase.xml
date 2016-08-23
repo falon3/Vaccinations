@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
     <!--
         See http://www.liquibase.org/manual/home#available_database_refactorings
@@ -10,136 +10,136 @@
     -->
     <!-- This changeset creates vaccines table -->
     <changeSet id="vaccinations-20150515-1" author="Serghei Luchianov">
-    	<preConditions onFail="MARK_RAN">
-				<not><tableExists tableName="vac_vaccines"/></not>
-		</preConditions>
-		<createTable tableName="vac_vaccines">
-			<column name="vaccine_id" autoIncrement="true" type="int">
-				<constraints nullable="false" primaryKey="true"/>
-			</column>
+        <preConditions onFail="MARK_RAN">
+            <not><tableExists tableName="vac_vaccines"/></not>
+        </preConditions>
+        <createTable tableName="vac_vaccines">
+            <column name="vaccine_id" autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
 
-			<column name="scheduled" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
-			<column name="name" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
-			<column name="indication_name" type="varchar(255)" defaultValue="" />
-			<column name="dose" type="DOUBLE" />
-			<column name="dosing_unit" type="varchar(255)" />
-			<column name="route" type="varchar(255)" />
+            <column name="scheduled" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
+            <column name="name" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
+            <column name="indication_name" type="varchar(255)" defaultValue="" />
+            <column name="dose" type="DOUBLE" />
+            <column name="dosing_unit" type="varchar(255)" />
+            <column name="route" type="varchar(255)" />
 
 
-			<column name="creator" type="int" defaultValueNumeric="0" ><constraints nullable="false"/></column>
-			<column name="date_created" type="DATETIME"><constraints nullable="false"/></column>
-			<column name="changed_by" type="int"/>
-			<column name="date_changed" type="DATETIME"/>
-			<column defaultValueBoolean="false" name="retired" type="BOOLEAN"><constraints nullable="false"/></column>
-			<column name="retired_by" type="int"/>
-			<column name="date_retired" type="DATETIME"/>
-			<column name="retire_reason" type="varchar(255)"/>
-			<column name="uuid" type="char(38)"><constraints nullable="false" unique="true" /></column>
-		</createTable>
-	</changeSet>
+            <column name="creator" type="int" defaultValueNumeric="0" ><constraints nullable="false"/></column>
+            <column name="date_created" type="DATETIME"><constraints nullable="false"/></column>
+            <column name="changed_by" type="int"/>
+            <column name="date_changed" type="DATETIME"/>
+            <column defaultValueBoolean="false" name="retired" type="BOOLEAN"><constraints nullable="false"/></column>
+            <column name="retired_by" type="int"/>
+            <column name="date_retired" type="DATETIME"/>
+            <column name="retire_reason" type="varchar(255)"/>
+            <column name="uuid" type="char(38)"><constraints nullable="false" unique="true" /></column>
+        </createTable>
+    </changeSet>
 
-	<!-- This changeset creates vaccinations table and foreign key to vaccines table -->
+    <!-- This changeset creates vaccinations table and foreign key to vaccines table -->
     <changeSet id="vaccinations-20150516-1" author="Serghei Luchianov">
-	    <preConditions onFail="MARK_RAN">
-			<and>
-				<not><tableExists tableName="vac_vaccinations"/></not>
-				<tableExists tableName="vac_vaccines"/>
-			</and>
-		</preConditions>
-		<createTable tableName="vac_vaccinations">
-			<column name="vaccination_id" autoIncrement="true" type="int">
-				<constraints nullable="false" primaryKey="true"/>
-			</column>
-			<column name="vaccine_id" type="int"/>
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <not><tableExists tableName="vac_vaccinations"/></not>
+                <tableExists tableName="vac_vaccines"/>
+            </and>
+        </preConditions>
+        <createTable tableName="vac_vaccinations">
+            <column name="vaccination_id" autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="vaccine_id" type="int"/>
 
-			<column name="scheduled" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
-			<column name="scheduled_date" type="DATETIME" />
+            <column name="scheduled" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
+            <column name="scheduled_date" type="DATETIME" />
 
-			<column name="name" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
-			<column name="indication_name" type="varchar(255)" defaultValue="" />
-			<column name="dose" type="DOUBLE" />
-			<column name="dosing_unit" type="varchar(255)" />
-			<column name="route" type="varchar(255)" />
+            <column name="name" type="varchar(255)" defaultValue="" ><constraints nullable="false"/></column>
+            <column name="indication_name" type="varchar(255)" defaultValue="" />
+            <column name="dose" type="DOUBLE" />
+            <column name="dosing_unit" type="varchar(255)" />
+            <column name="route" type="varchar(255)" />
 
-			<column name="administered" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
-			<column name="administration_date" type="DATETIME" />
-			<column name="body_site_administered" type="varchar(255)" />
+            <column name="administered" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
+            <column name="administration_date" type="DATETIME" />
+            <column name="body_site_administered" type="varchar(255)" />
 
-			<column name="dose_number" type="int"/>
-			<column name="lot_number" type="varchar(50)" />
-			<column name="manufacturer" type="varchar(255)" />
-			<column name="manufacture_date" type="DATETIME" />
-			<column name="expiry_date" type="DATETIME" />
+            <column name="dose_number" type="int"/>
+            <column name="lot_number" type="varchar(50)" />
+            <column name="manufacturer" type="varchar(255)" />
+            <column name="manufacture_date" type="DATETIME" />
+            <column name="expiry_date" type="DATETIME" />
 
-			<column name="adverse_reaction" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
-			<column name="adverse_reaction_id" type="int"/>
+            <column name="adverse_reaction" type="BOOLEAN" defaultValueBoolean="false" ><constraints nullable="false"/></column>
+            <column name="adverse_reaction_id" type="int"/>
 
 
-			<column name="creator" type="int" defaultValueNumeric="0" ><constraints nullable="false"/></column>
-			<column name="date_created" type="DATETIME"><constraints nullable="false"/></column>
-			<column name="changed_by" type="int"/>
-			<column name="date_changed" type="DATETIME"/>
-			<column defaultValueBoolean="false" name="retired" type="BOOLEAN"><constraints nullable="false"/></column>
-			<column name="retired_by" type="int"/>
-			<column name="date_retired" type="DATETIME"/>
-			<column name="retire_reason" type="varchar(255)"/>
-			<column name="uuid" type="char(38)"><constraints nullable="false" unique="true" /></column>
-		</createTable>
+            <column name="creator" type="int" defaultValueNumeric="0" ><constraints nullable="false"/></column>
+            <column name="date_created" type="DATETIME"><constraints nullable="false"/></column>
+            <column name="changed_by" type="int"/>
+            <column name="date_changed" type="DATETIME"/>
+            <column defaultValueBoolean="false" name="retired" type="BOOLEAN"><constraints nullable="false"/></column>
+            <column name="retired_by" type="int"/>
+            <column name="date_retired" type="DATETIME"/>
+            <column name="retire_reason" type="varchar(255)"/>
+            <column name="uuid" type="char(38)"><constraints nullable="false" unique="true" /></column>
+        </createTable>
 
-		<addForeignKeyConstraint constraintName="vaccination_to_vaccine_fk"
-	                             baseTableName="vac_vaccinations" baseColumnNames="vaccine_id"
-		                         referencedTableName="vac_vaccines" referencedColumnNames="vaccine_id"
-		                         deferrable="false" initiallyDeferred="false" />
-	</changeSet>
+        <addForeignKeyConstraint constraintName="vaccination_to_vaccine_fk"
+                                 baseTableName="vac_vaccinations" baseColumnNames="vaccine_id"
+                                 referencedTableName="vac_vaccines" referencedColumnNames="vaccine_id"
+                                 deferrable="false" initiallyDeferred="false" />
+    </changeSet>
 
-	<!-- This changeset creates adverse_reaction table and a foreign key reference to vaccinations table -->
+    <!-- This changeset creates adverse_reaction table and a foreign key reference to vaccinations table -->
     <changeSet id="vaccinations-20150518-1" author="Serghei Luchianov">
-	    <preConditions onFail="MARK_RAN">
-			<and>
-				<not><tableExists tableName="vac_adverse_reactions"/></not>
-				<tableExists tableName="vac_vaccinations"/>
-			</and>
-		</preConditions>
-		<createTable tableName="vac_adverse_reactions">
-			<column name="adverse_reaction_id" autoIncrement="true" type="int">
-				<constraints nullable="false" primaryKey="true"/>
-			</column>
-			<column name="vaccination_id" type="int"/>
+        <preConditions onFail="MARK_RAN">
+            <and>
+                <not><tableExists tableName="vac_adverse_reactions"/></not>
+                <tableExists tableName="vac_vaccinations"/>
+            </and>
+        </preConditions>
+        <createTable tableName="vac_adverse_reactions">
+            <column name="adverse_reaction_id" autoIncrement="true" type="int">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="vaccination_id" type="int"/>
 
-			<column name="logged_date" type="DATETIME" />
-			<column name="adverse_event" type="varchar(255)" />
-			<column name="grade" type="varchar(255)" />
-
-
-			<column name="creator" type="int" defaultValueNumeric="0" ><constraints nullable="false"/></column>
-			<column name="date_created" type="DATETIME"><constraints nullable="false"/></column>
-			<column name="changed_by" type="int"/>
-			<column name="date_changed" type="DATETIME"/>
-			<column defaultValueBoolean="false" name="retired" type="BOOLEAN"><constraints nullable="false"/></column>
-			<column name="retired_by" type="int"/>
-			<column name="date_retired" type="DATETIME"/>
-			<column name="retire_reason" type="varchar(255)"/>
-			<column name="uuid" type="char(38)"><constraints nullable="false" unique="true" /></column>
-		</createTable>
-
-		<addForeignKeyConstraint constraintName="adverse_reaction_to_vaccination_fk"
-	                             baseTableName="vac_adverse_reactions" baseColumnNames="vaccination_id"
-		                         referencedTableName="vac_vaccinations" referencedColumnNames="vaccination_id"
-		                         deferrable="false" initiallyDeferred="false" />
-	</changeSet>
-
-	<changeSet id="vaccinations-20150525-1" author="Serghei Luchianov">
-		<addColumn tableName="vac_vaccines">
-			<column name="dose_number" type="int"/>
-		</addColumn>
-	</changeSet>
+            <column name="logged_date" type="DATETIME" />
+            <column name="adverse_event" type="varchar(255)" />
+            <column name="grade" type="varchar(255)" />
 
 
-	<changeSet id="vaccinations-20150529-1" author="Serghei Luchianov">
-		<addColumn tableName="vac_vaccinations">
-			<column name="patient_id" type="int"/>
-		</addColumn>
-	</changeSet>
+            <column name="creator" type="int" defaultValueNumeric="0" ><constraints nullable="false"/></column>
+            <column name="date_created" type="DATETIME"><constraints nullable="false"/></column>
+            <column name="changed_by" type="int"/>
+            <column name="date_changed" type="DATETIME"/>
+            <column defaultValueBoolean="false" name="retired" type="BOOLEAN"><constraints nullable="false"/></column>
+            <column name="retired_by" type="int"/>
+            <column name="date_retired" type="DATETIME"/>
+            <column name="retire_reason" type="varchar(255)"/>
+            <column name="uuid" type="char(38)"><constraints nullable="false" unique="true" /></column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="adverse_reaction_to_vaccination_fk"
+                                 baseTableName="vac_adverse_reactions" baseColumnNames="vaccination_id"
+                                 referencedTableName="vac_vaccinations" referencedColumnNames="vaccination_id"
+                                 deferrable="false" initiallyDeferred="false" />
+    </changeSet>
+
+    <changeSet id="vaccinations-20150525-1" author="Serghei Luchianov">
+        <addColumn tableName="vac_vaccines">
+            <column name="dose_number" type="int"/>
+        </addColumn>
+    </changeSet>
+
+
+    <changeSet id="vaccinations-20150529-1" author="Serghei Luchianov">
+        <addColumn tableName="vac_vaccinations">
+            <column name="patient_id" type="int"/>
+        </addColumn>
+    </changeSet>
 
     <changeSet id="vaccinations-20150603-1" author="Serghei Luchianov">
         <addColumn tableName="vac_vaccines">
@@ -180,7 +180,7 @@
     <!-- This changeset creates manufacturers table -->
     <changeSet id="vaccinations-20150714-1" author="Serghei Luchianov">
         <preConditions onFail="MARK_RAN">
-                <not><tableExists tableName="vac_manufacturers"/></not>
+            <not><tableExists tableName="vac_manufacturers"/></not>
         </preConditions>
         <createTable tableName="vac_manufacturers">
             <column name="manufacturer_id" autoIncrement="true" type="int">
@@ -2468,9 +2468,9 @@
             `uuid`,
             `numeric_indication`,
             `side_administered_left`,
-            `body_site_administered`, 
+            `body_site_administered`,
             `min_age`,
-			`max_age`
+            `max_age`
             )
             VALUES (
             0,
@@ -2826,7 +2826,7 @@
 
     <changeSet id="vaccinations-20160617-1" author="Mark Nicoll">
         <preConditions>
-                <tableExists tableName="vac_vaccines"/>
+            <tableExists tableName="vac_vaccines"/>
         </preConditions>
         <comment>BUGFIX: make the to administer date value consistant for Bacillus Calmette-Guerin BCG seccond dose </comment>
         <sql>

@@ -84,6 +84,7 @@ angular.module('vaccinations')
     };
 
     $scope.unadministerVaccination = function (vaccination) {
+        $scope.resetFormDataToDefaults();
         // Unadministereing a scheduled vaccination is slightly different than unadministering a non scheduled
         // vaccination. In the latter case, unadministering means removing any data
         // Remove all information pertaining to administration.

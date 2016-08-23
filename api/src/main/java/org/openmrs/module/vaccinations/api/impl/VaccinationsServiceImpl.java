@@ -88,15 +88,15 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 						}
 					}
 
-                    //If there are no matching Vaccinations, create Vaccination Template
+					//If there are no matching Vaccinations, create Vaccination Template
 					if (!found) {
-                        completeVaccinations.add(createVaccinationTemplate(vaccine, patientId));
+						completeVaccinations.add(createVaccinationTemplate(vaccine, patientId));
 					}
 				}
 				completeVaccinations.addAll(vaccinations);
 
 			} else {
-                //If there are no vaccinations at all, simply generate vaccine templates
+				//If there are no vaccinations at all, simply generate vaccine templates
 				try {
 					for (Vaccine vaccine : vaccines) {
 						completeVaccinations.add(createVaccinationTemplate(vaccine, patientId));
@@ -112,43 +112,43 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 		}
 	}
 
-    private Vaccination createVaccinationTemplate(Vaccine vaccine, int patientId){
-        Date today = new Date();
-        Date [] calculatedDateRange = {new Date(),new Date()};
-        Date patientBDay = getPtBDay(patientId);
-        Calendar cal1 = Calendar.getInstance();
-        Calendar cal2 = Calendar.getInstance();
+	private Vaccination createVaccinationTemplate(Vaccine vaccine, int patientId){
+		Date today = new Date();
+		Date [] calculatedDateRange = {new Date(),new Date()};
+		Date patientBDay = getPtBDay(patientId);
+		Calendar cal1 = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
 
-        //Reset calendars to patient birthday
-        cal1.setTime(patientBDay);
-        cal2.setTime(patientBDay);
+		//Reset calendars to patient birthday
+		cal1.setTime(patientBDay);
+		cal2.setTime(patientBDay);
 
-        //Here we need to check if the vaccine template is relevant to the current patient age
-        cal1.add(Calendar.DATE, vaccine.getMin_age());
-        cal2.add(Calendar.DATE, vaccine.getMax_age());
+		//Here we need to check if the vaccine template is relevant to the current patient age
+		cal1.add(Calendar.DATE, vaccine.getMin_age());
+		cal2.add(Calendar.DATE, vaccine.getMax_age());
 
-        //Vaccine to Vaccination
-        calculatedDateRange = calculateDateRange(patientBDay, vaccine);
-        Vaccination vaccinationTemplate = vaccineToVaccination(vaccine, calculatedDateRange);
+		//Vaccine to Vaccination
+		calculatedDateRange = calculateDateRange(patientBDay, vaccine);
+		Vaccination vaccinationTemplate = vaccineToVaccination(vaccine, calculatedDateRange);
 
-        if (today.before(cal1.getTime()))
-        {
-            //Adding future vaccines here
-            vaccinationTemplate.setOverdue(false);
-        }
-        else if (today.after(cal2.getTime()))
-        {
-            //If vaccine template is overdue add with OverDue flag
-            vaccinationTemplate.setOverdue(true);
-        }else {
-            //Adding current/relevant vaccines here
-            vaccinationTemplate.setOverdue(false);
-        }
+		if (today.before(cal1.getTime()))
+		{
+			//Adding future vaccines here
+			vaccinationTemplate.setOverdue(false);
+		}
+		else if (today.after(cal2.getTime()))
+		{
+			//If vaccine template is overdue add with OverDue flag
+			vaccinationTemplate.setOverdue(true);
+		}else {
+			//Adding current/relevant vaccines here
+			vaccinationTemplate.setOverdue(false);
+		}
 
-        return vaccinationTemplate;
-    }
+		return vaccinationTemplate;
+	}
 
-    @Override
+	@Override
 	public Date getPtBDay(Integer patientId) throws APIException{
 
 		Date patientBDay = new Date();
@@ -159,7 +159,7 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 		return patientBDay;
 	}
 
-    @Override
+	@Override
 	public Date [] calculateDateRange(Date patientBDay, Vaccine vaccine) throws APIException{
 		Calendar cal1 = Calendar.getInstance();
 		Calendar cal2 = Calendar.getInstance();
@@ -170,7 +170,7 @@ public class VaccinationsServiceImpl extends BaseOpenmrsService implements Vacci
 		int maxAge = 0;
 		if (vaccine.getNumeric_indication() != null)
 		{
-            minAge = vaccine.getMin_age();
+			minAge = vaccine.getMin_age();
 			maxAge = vaccine.getMax_age();
 		}
 		cal1.setTime(patientBDay);

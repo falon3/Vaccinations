@@ -21,7 +21,7 @@ angular.module('vaccinations')
 
     var exports = {
         // Set url for testing front end locally
-        //URL: 'http://208.77.196.178:65010',
+        //URL: 'http://208.77.196.178:65010/openmrs',
         URL: tempURL,
         PATH:'/ws/rest/v2/vaccinationsmodule/vaccinations',
 

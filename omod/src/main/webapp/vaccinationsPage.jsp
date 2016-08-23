@@ -14,21 +14,35 @@
 	</c:otherwise>
 </c:choose>
 <br/>
+
+<% //'COMMENTED THIS OUT SO THE PATIENT MENU AND TITLE BOX ARENT BOTH THERE IN THE VACCINATIONS PAGE' %>
+<%--
 <a href="${pageContext.request.contextPath}/patientDashboard.form?patientId=${patientId}" ><h1 align="center">${patientName}</h1></a>
+--%>
 
 <style>
+<%--
 table.al { border-radius: 4px; border: 1px solid #ddd; border-collapse: inherit; }
 table.al td { border-left: 1px solid #ddd;padding-left; 10px;text-align: top; }
 table.al td:first-child { border-left: none;text-align: top; }
+--%>
 </style>
 
-<div style="text-align: center;padding-left:5%;">
+<%--<div style="text-align: center;padding-left:5%;">--%>
+
+<%--
+
 <table style="margin: auto;padding: 10px;" class="legend-wrapper">
       <tr><td style="text-align: right;">Gender : </td><td> ${patientGender} </td></tr>
       <tr><td style="text-align: right;">Age : </td><td> ${patientAge} </td></tr>
       <tr><td style="text-align: right;">Birthdate : </td><td> ${patientBirthDate} </td></tr>
 </table>
-</div>
+
+--%>
+<%-- </div> --%>
+<%--'COMMENTED OUT SECTION ENDS HERE'--%>
+
+
 
 <openmrs:portlet id="Vaccinations" moduleId="vaccinations" url="vaccinationsPortlet" />
 

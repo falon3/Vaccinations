@@ -58,7 +58,9 @@ angular.module('vaccinations')
 
     // Only available if the vaccination is of type unscheduled.
     $scope.deleteVaccination = function(vaccination) {
-        vaccinationsManager.deleteVaccination(vaccination);
+        if (confirm('Are you sure you want to delete this vaccination?')){
+            vaccinationsManager.deleteVaccination(vaccination);
+        }
     };
 
     // Form data inits.

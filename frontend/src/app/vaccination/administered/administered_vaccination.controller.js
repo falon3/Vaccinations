@@ -68,14 +68,18 @@ angular.module('vaccinations')
     };
 
     $scope.removeReaction = function (reaction, vaccination) {
-        vaccinationsManager.removeReaction(reaction, vaccination);
+        if (confirm('Are you sure you want to remove this reaction?')){
+            vaccinationsManager.removeReaction(reaction, vaccination);
+        }
     };
 
     // Available for all administered vaccinations.
     // Deletes a vaccination of type unscheduled, vaccinations of type
     // scheduled become unadministered instead of being removed.
     $scope.deleteVaccination = function(vaccination) {
-        vaccinationsManager.deleteVaccination(vaccination);
+        if (confirm('Are you sure you want to delete this vaccination?')){
+            vaccinationsManager.deleteVaccination(vaccination);
+        }
     };
 
     $scope.updateVaccination = function (vaccination) {
@@ -84,12 +88,14 @@ angular.module('vaccinations')
     };
 
     $scope.unadministerVaccination = function (vaccination) {
-        $scope.resetFormDataToDefaults();
-        // Unadministereing a scheduled vaccination is slightly different than unadministering a non scheduled
-        // vaccination. In the latter case, unadministering means removing any data
-        // Remove all information pertaining to administration.
-        vaccination.unadminister = true;
-        vaccinationsManager.submitVaccination(vaccination);
+        if (confirm('Are you sure you want to unadminister this vaccination?')){
+            $scope.resetFormDataToDefaults();
+            // Unadministereing a scheduled vaccination is slightly different than unadministering a non scheduled
+            // vaccination. In the latter case, unadministering means removing any data
+            // Remove all information pertaining to administration.
+            vaccination.unadminister = true;
+            vaccinationsManager.submitVaccination(vaccination);
+        }
     };
 
     $scope.resetFormDataToDefaults();

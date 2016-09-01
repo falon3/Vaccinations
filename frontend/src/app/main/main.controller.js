@@ -73,6 +73,9 @@ angular.module('vaccinations')
          elm.bind('keydown', function(evt) {
            angular.forEach(allowedKeys, function(key) {
              if (key == evt.which) {
+                if(elm[0].type == 'textarea'){
+                   elm[0].value+="\n";
+                }
                 evt.preventDefault(); // Doesn't work at all
                 window.stop(); // Works in all browsers but IE
                 document.execCommand("Stop"); // Works in IE

@@ -1,5 +1,4 @@
 <!doctype html>
-<%@ include file="/WEB-INF/template/include.jsp"%>
 <html class="no-js">
   <head>
     <meta charset="utf-8">
@@ -32,7 +31,10 @@
         <!-- ADD SECTION -->
 
         <div class="add-vaccination-wrapper">
-            <openmrs:portlet url="patientHeader" id="formsPatientdHeader" patientId="${patientId}" />
+            <!-- only show the patient header if in the vaccinations section so not double displayed -->
+            <span ng-if="location.path().indexOf('/vaccinations/') != -1">
+                <openmrs:portlet url="patientHeader" id="formsPatientdHeader" patientId="${patientId}" />
+            </span>
             <!--LEGEND-->
             <div class="legend-wrapper">
                 <div><span style="padding-left: 22px; font-weight: bold;">Legend</span></div>

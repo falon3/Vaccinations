@@ -8,8 +8,8 @@
  * Controller of the vaccinations
  */
 angular.module('vaccinations')
-.controller('MainController', ['$scope', '$filter', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions', 'appConstants',
-    function($scope, $filter, vaccinationsManager, vaccinesManager, helperFunctions, appConstants){
+.controller('MainController', ['$scope', '$filter', '$location', 'vaccinationsManager', 'vaccinesManager', 'helperFunctions', 'appConstants',
+    function($scope, $filter, $location, vaccinationsManager, vaccinesManager, helperFunctions, appConstants){
     // Gets a human readable date from a timestamp
     $scope.getDateFromTimeStamp = function(timestamp) {
         var date = new Date(timestamp);
@@ -18,6 +18,9 @@ angular.module('vaccinations')
 
     // Get administation status.
     $scope.adminStatus = appConstants.getAdminStatus();
+
+    //location stuff
+    $scope.location = $location;
 
     // Get list of patient vaccinations.
     vaccinationsManager.getVaccinations().success(function(data) {

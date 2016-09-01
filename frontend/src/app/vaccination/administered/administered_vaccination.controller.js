@@ -77,7 +77,7 @@ angular.module('vaccinations')
     // Deletes a vaccination of type unscheduled, vaccinations of type
     // scheduled become unadministered instead of being removed.
     $scope.deleteVaccination = function(vaccination) {
-        if (confirm('Are you sure you want to delete this vaccination?')){
+        if (confirm('Are you sure you want to delete/unadminister this vaccination?')){
             vaccinationsManager.deleteVaccination(vaccination);
         }
     };

@@ -89,7 +89,7 @@ public class SimpleVaccination implements Serializable {
             this.dose = vaccination.getDose();
             this.dosing_unit = vaccination.getDosing_unit();
             this.route = vaccination.getRoute();
-            this.scheduled = vaccination.getScheduled();
+            this.scheduled = vaccination.getVaccine().getScheduled();
             this.simpleVaccine = new SimpleVaccine(vaccination.getVaccine());
             this.simpleAdverse_reaction = new SimpleAdverseReaction(vaccination.getAdverse_reaction());
             this.administered = vaccination.getAdministered();

@@ -144,9 +144,9 @@ public class Vaccination extends BaseOpenmrsObject implements Serializable {
             this.dose = vaccination.getDose();
             this.dosing_unit = vaccination.getDosing_unit();
             this.route = vaccination.getRoute();
-            this.scheduled = vaccination.getScheduled();
             this.scheduled_date = vaccination.getScheduled_date();
             this.vaccine = vaccination.getVaccine();
+            this.scheduled = this.vaccine.getScheduled(); // Vaccine has correct info if scheduled or not
             if (vaccination.getAdverse_reaction_observed())
                 this.adverse_reaction = vaccination.getAdverse_reaction();
             this.administered = vaccination.getAdministered();

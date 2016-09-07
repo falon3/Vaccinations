@@ -3,6 +3,7 @@
 angular.module('vaccinations')
 .service('vaccinesManager', ['$http', 'appConstants', function($http, appConstants) {
     var self = this;
+    var temp = [];
     var promise = $http.get(
         appConstants.URL +
         '/ws/rest/v2/vaccinationsmodule' +
@@ -20,16 +21,24 @@ angular.module('vaccinations')
                 break;
             }
         }
-        self.vaccines = data;
+        //console.log("PROMISE");
+        temp[0] = data;
+        //self.vaccines = data;
+        console.log(temp);
+        $http.get(appConstants.URL +
+                        '/ws/rest/v2/vaccinationsmodule' +
+                        '/vaccines/scheduled')
+                        .success( function(data) {
+                    temp[1] = data;
+                    //self.vaccines = data;
+                    //console.log("PROMISE2");
+            });
+        self.vaccines = [].concat.apply([], temp);
     });
-    var promise2 = $http.get(
-                appConstants.URL +
-                '/ws/rest/v2/vaccinationsmodule' +
-                '/vaccines/scheduled')
 
     var exports = {
         getVaccines: function() {
-            return [promise, promise2];
+        return promise;
         }
     };
 

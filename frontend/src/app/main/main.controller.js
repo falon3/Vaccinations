@@ -24,7 +24,7 @@ angular.module('vaccinations')
 
     // Get list of patient vaccinations.
     vaccinationsManager.getVaccinations().success(function(data) {
-        $scope.vaccinations = var merged = [].concat.apply([], data[0]);
+        $scope.vaccinations = data[0];
         $scope.dropDownData = {};
         $scope.dropDownData.routes = data[1];
         $scope.dropDownData.dosingUnits = data[2];
@@ -53,6 +53,7 @@ angular.module('vaccinations')
     // Get list of vaccines.
     vaccinesManager.getVaccines().success( function(data) {
         $scope.vaccines = data;
+        console.log(data);
     });
 
     $scope.stageVaccination = function (vaccine, scheduled) {

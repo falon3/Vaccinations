@@ -23,7 +23,10 @@
         <!-- ADD SECTION -->
 
         <div class="add-vaccination-wrapper">
-            <openmrs:portlet url="patientHeader" id="formsPatientdHeader" patientId="${patientId}" />
+            <!-- only show the patient header if in the vaccinations section so not double displayed -->
+            <span ng-if="location.path().indexOf('/vaccinations/') != -1">
+                <openmrs:portlet url="patientHeader" id="formsPatientdHeader" patientId="${patientId}" />
+            </span>
             <!--LEGEND-->
             <div class="legend-wrapper">
                 <div><span style="padding-left: 22px; font-weight: bold;">Legend</span></div>
@@ -715,7 +718,7 @@
 </div>
     <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-bb4053d2.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-ccfed9b7.js"></script>
 
   </body>
 </html>

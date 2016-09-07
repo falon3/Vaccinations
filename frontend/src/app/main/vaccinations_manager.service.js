@@ -30,7 +30,9 @@ angular.module('vaccinations')
             appConstants.getPatientId())
 
         .success(function(data, status, headers, config){
+            console.log("GET VACCINATIONS");
             console.log(data);
+            console.log(data[0]);
             setVaccinations(data[0]);
         })
 
@@ -267,6 +269,7 @@ angular.module('vaccinations')
         },
 
         setVaccinationDefault: function(){
+            promise.scheduled = promise.simpleVaccine.scheduled;
             promise.dose = promise.simpleVaccine.dose;
             promise.dosing_unit = promise.simpleVaccine.dosing_unit;
             promise.route = promise.simpleVaccine.route;

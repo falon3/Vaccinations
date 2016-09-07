@@ -115,6 +115,54 @@ public class VaccinationsResourceController {// extends MainResourceController {
         return outputlist;
 	}
 
+	@RequestMapping(value = "/vaccines/scheduled", method = RequestMethod.GET)
+	@ResponseBody
+	public List<SimpleVaccine> getScheduledVaccinesSimple() {
+
+		//sort vaccines by dose number but also preserve the name order
+		List<SimpleVaccine> vaclist = Context.getService(VaccinesService.class).getScheduledVaccinesSimple(false);
+		List<List<SimpleVaccine>> sortlist = new ArrayList<List<SimpleVaccine>>();
+		for(int i = 0; i < vaclist.size();i++){
+			//check contains size
+			int index = -1;
+			for(int j = 0; j < sortlist.size();j++){
+				if(sortlist.get(j).get(0).getName().equals(vaclist.get(i).getName())){
+					index = j;
+					break;
+				}
+			}
+
+			if(index == -1){
+				//add if not in list
+				ArrayList<SimpleVaccine> sublist = new ArrayList<SimpleVaccine>();
+				sublist.add(vaclist.get(i));
+				sortlist.add(sublist);
+			}else{
+				//preform a sorted insert
+				int j = 0;
+				while((j < sortlist.get(index).size()) && (vaclist.get(i).getDose_number() > sortlist.get(index).get(j).getDose_number())) {
+					j++;
+				}
+				if(j < sortlist.get(index).size()) {
+					sortlist.get(index).add(j, vaclist.get(i));
+				}else{
+					sortlist.get(index).add(vaclist.get(i));
+				}
+			}
+		}
+
+		//create sorted output list
+		List<SimpleVaccine> outputlist = new ArrayList<SimpleVaccine>();
+		for(int i = 0; i < sortlist.size(); i++){
+			for(int j = 0; j < sortlist.get(i).size();j++){
+				outputlist.add(sortlist.get(i).get(j));
+			}
+		}
+
+		//return Context.getService(VaccinesService.class).getUnscheduledVaccinesSimple(false);
+		return outputlist;
+	}
+
 	@RequestMapping(value = "/vaccines/template", method = RequestMethod.POST)
 	@ResponseBody
 	public SimpleVaccination generateSimpleVaccinationTemplate(@RequestBody SimpleVaccine simpleVaccine) {

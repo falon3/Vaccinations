@@ -24,7 +24,7 @@ angular.module('vaccinations')
 
     // Get list of patient vaccinations.
     vaccinationsManager.getVaccinations().success(function(data) {
-        $scope.vaccinations = data[0];
+        $scope.vaccinations = var merged = [].concat.apply([], data[0]);
         $scope.dropDownData = {};
         $scope.dropDownData.routes = data[1];
         $scope.dropDownData.dosingUnits = data[2];

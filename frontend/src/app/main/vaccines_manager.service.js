@@ -22,10 +22,14 @@ angular.module('vaccinations')
         }
         self.vaccines = data;
     });
+    var promise2 = $http.get(
+                appConstants.URL +
+                '/ws/rest/v2/vaccinationsmodule' +
+                '/vaccines/scheduled')
 
     var exports = {
         getVaccines: function() {
-            return promise;
+            return [promise, promise2];
         }
     };
 

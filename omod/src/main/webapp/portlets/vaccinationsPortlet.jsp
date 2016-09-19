@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-dbd74377.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-ab025e76.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-3db5a6ba.css">
   </head>
   <body>
 
@@ -23,7 +23,10 @@
         <!-- ADD SECTION -->
 
         <div class="add-vaccination-wrapper">
-            <openmrs:portlet url="patientHeader" id="formsPatientdHeader" patientId="${patientId}" />
+            <!-- only show the patient header if in the vaccinations section so not double displayed -->
+            <span ng-if="location.path().indexOf('/vaccinations/') != -1">
+                <openmrs:portlet url="patientHeader" id="formsPatientdHeader" patientId="${patientId}" />
+            </span>
             <!--LEGEND-->
             <div class="legend-wrapper">
                 <div><span style="padding-left: 22px; font-weight: bold;">Legend</span></div>
@@ -713,9 +716,9 @@
 
     <!-- /TEMPLATES -->
 </div>
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7fc2f627.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-bb4053d2.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e1bc333b.js"></script>
 
   </body>
 </html>

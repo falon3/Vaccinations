@@ -636,33 +636,66 @@
                     </div>
                     <feedback warn="form.scheduled_date.$error.date" warning="Enter a valid scheduled date."></feedback>
 
-                    <div class="form-group" ng-if="enteredAdminFormData.dose_number">
-                        <label>Course Number</label>
-                        <input disabled="disabled" class="form-control" type="text" ng-model="enteredAdminFormData.dose_number" placeholder="Dose In Course" on-keyup keys="[13]">
-                    </div>
-                    <div class="form-group">
-                        <label>Dose</label>
-                        <input disabled="disabled" name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" ng-required="enteredAdminFormData._administering" min="0" on-keyup keys="[13]">
-                    </div>
-                    <feedback warn="(enteredAdminFormData._administering && form.dose.$error.required || form.dose.$error.number || !form.dose.$valid) || enteredAdminFormData._scheduling && form.dose.$error.number" warning="Enter a valid dose. For ex .5, 2... Dose must be a number"></feedback>
+                    <!-- Only disable entry for scheduled vaccines so not locked out from entering new ones -->
+                    <span ng-if="enteredEditFormData.scheduled" >
+                        <div class="form-group" ng-if="enteredAdminFormData.dose_number">
+                            <label>Course Number</label>
+                            <input disabled="disabled" class="form-control" type="text" ng-model="enteredAdminFormData.dose_number" placeholder="Dose In Course" on-keyup keys="[13]">
+                        </div>
+                        <div class="form-group">
+                            <label>Dose</label>
+                            <input disabled="disabled" name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" ng-required="enteredAdminFormData._administering" min="0" on-keyup keys="[13]">
+                        </div>
+                        <feedback warn="(enteredAdminFormData._administering && form.dose.$error.required || form.dose.$error.number || !form.dose.$valid) || enteredAdminFormData._scheduling && form.dose.$error.number" warning="Enter a valid dose. For ex .5, 2... Dose must be a number"></feedback>
 
-                  <div class="form-group">
-                    <label>Units</label>
-                    <select disabled="disabled" name="dosing_unit" class="form-control" ng-model="enteredAdminFormData.dosing_unit" ng-options="u.conceptId as u.name for u in getDosingUnits()" required on-keyup keys="[13]">
-                      <option value=""></option>
-                    </select>
-                  </div>
-                  <feedback warn="form.dosing_unit.$error.required" warning="Enter a valid dosing unit. For example ml, drops..."></feedback>
+                        <div class="form-group">
+                            <label>Units</label>
+                            <select disabled="disabled" name="dosing_unit" class="form-control" ng-model="enteredAdminFormData.dosing_unit" ng-options="u.conceptId as u.name for u in getDosingUnits()" required on-keyup keys="[13]">
+                            <option value=""></option>
+                            </select>
+                        </div>
+                        <feedback warn="form.dosing_unit.$error.required" warning="Enter a valid dosing unit. For example ml, drops..."></feedback>
 
-                  <div class="form-group">
-                    <label>Route</label>
-                    <select disabled="disabled" name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required on-keyup keys="[13]">
-                      <option value=""></option>
-                    </select>
-                  </div>
-                  <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
+                        <div class="form-group">
+                            <label>Route</label>
+                            <select disabled="disabled" name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required on-keyup keys="[13]">
+                            <option value=""></option>
+                            </select>
+                        </div>
+                        <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
+                    </span>
 
-                  <div class="form-group" ng-if="!(enteredAdminFormData.route == 160240) && !(enteredAdminFormData.route == 161253)">
+                    <!-- span only shown if not scheduled vaccine, then can edit input -->
+                    <span ng-if="!enteredEditFormData.scheduled" >
+                        <div class="form-group" ng-if="enteredAdminFormData.dose_number">
+                            <label>Course Number</label>
+                            <input class="form-control" type="text" ng-model="enteredAdminFormData.dose_number" placeholder="Dose In Course" on-keyup keys="[13]">
+                        </div>
+                        <div class="form-group">
+                            <label>Dose</label>
+                            <input name="dose" class="form-control" type="number" ng-model="enteredAdminFormData.dose" ng-required="enteredAdminFormData._administering" min="0" on-keyup keys="[13]">
+                        </div>
+                        <feedback warn="(enteredAdminFormData._administering && form.dose.$error.required || form.dose.$error.number || !form.dose.$valid) || enteredAdminFormData._scheduling && form.dose.$error.number" warning="Enter a valid dose. For ex .5, 2... Dose must be a number"></feedback>
+
+                        <div class="form-group">
+                            <label>Units</label>
+                            <select name="dosing_unit" class="form-control" ng-model="enteredAdminFormData.dosing_unit" ng-options="u.conceptId as u.name for u in getDosingUnits()" required on-keyup keys="[13]">
+                            <option value=""></option>
+                            </select>
+                        </div>
+                        <feedback warn="form.dosing_unit.$error.required" warning="Enter a valid dosing unit. For example ml, drops..."></feedback>
+
+                        <div class="form-group">
+                            <label>Route</label>
+                            <select name="route" class="form-control" ng-model="enteredAdminFormData.route" ng-options="r.conceptId as r.name for r in getRoutes()" required on-keyup keys="[13]">
+                            <option value=""></option>
+                            </select>
+                        </div>
+                        <feedback warn="form.route.$error.required" warning="Enter a valid administration route.."></feedback>
+                    </span>
+
+
+                    <div class="form-group" ng-if="!(enteredAdminFormData.route == 160240) && !(enteredAdminFormData.route == 161253)">
                     <label>Body Site Administered</label>
                     <select name="body_site_administered" class="form-control" ng-model="enteredAdminFormData.body_site_administered" ng-options="bs as bs for bs in getBodySiteMapping()[enteredAdminFormData.route]" required on-keyup keys="[13]">
                     </select>

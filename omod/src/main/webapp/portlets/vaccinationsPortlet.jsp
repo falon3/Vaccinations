@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/vendor-dbd74377.css">
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-ab025e76.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/moduleResources/vaccinations/styles/app-3db5a6ba.css">
   </head>
   <body>
 
@@ -716,9 +716,9 @@
 
     <!-- /TEMPLATES -->
 </div>
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7b1bcdf1.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/vendor-7fc2f627.js"></script>
 
-    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-ccfed9b7.js"></script>
+    <script src="${pageContext.request.contextPath}/moduleResources/vaccinations/scripts/app-e1bc333b.js"></script>
 
   </body>
 </html>

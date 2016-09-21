@@ -246,7 +246,7 @@ angular.module('vaccinations')
             $rootScope.$broadcast('waiting');
             $http.delete(
                     appConstants.URL +
-                    '/openmrs/ws/rest/v2/vaccinationsmodule/' +
+                    '/ws/rest/v2/vaccinationsmodule/' +
                     'adversereactions/' +
                     reaction.id +
                     '/patient/' +

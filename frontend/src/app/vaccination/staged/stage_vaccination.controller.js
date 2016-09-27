@@ -39,7 +39,7 @@ angular.module('vaccinations')
         // date is saved.
         var enteredAdminFormDataCopy = angular.copy(enteredAdminFormData);
         var vaccination = $scope.transformVaccineToVaccination(enteredAdminFormData);
-        vaccination.scheduled_date = null;
+        vaccination.scheduled_date = new Date();
         // This field is the vaccine_id and needs to be removed on posts to create new vaccinations.
         vaccination.id = null;
         vaccinationsManager.submitVaccination(vaccination);

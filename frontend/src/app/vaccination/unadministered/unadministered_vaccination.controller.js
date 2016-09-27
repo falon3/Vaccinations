@@ -10,16 +10,18 @@ angular.module('vaccinations')
     $scope.state = {};
     $scope.state.administerFormOpen = false;
     $scope.state.rescheduleFormOpen = false;
-
     $scope.resetFormDataToDefaults = function(){
 
         var vaccination = angular.copy($scope.getVaccination());
-        vaccination.administration_date = new Date();
         // vaccination.manufacture_date = new Date();
         // vaccination.expiry_date = new Date();
         vaccination.scheduled_date = new Date(vaccination.scheduled_date);
         $scope.enteredAdminFormData = vaccination;
-        if ($scope.enteredAdminFormData.scheduled_date <= (new Date())) {
+        $scope.enteredAdminFormData.scheduled_date = vaccination.scheduled_date;
+        if ($scope.enteredAdminFormData.scheduled_date == null){
+            $scope.enteredAdminFormData.scheduled_date = new Date();
+        }
+        if (vaccination.scheduled_date <= (new Date())) {
             $scope.due = true;
         }
     };
@@ -41,20 +43,10 @@ angular.module('vaccinations')
     // Called when vaccination data from form has been validated
     // and ready to create a new vaccination event.
     $scope.submitVaccination = function(vaccination) {
-        if ($scope.enteredAdminFormData.expiry_date <= (new Date())) {
-                if (confirm('Vaccine is expired, are you sure you want to administer?')){
-                    var vaccsOrigCopy = angular.copy($scope.getVaccination());
-                    var vaccination = angular.copy(vaccination);
-                    vaccination.administered = true;
-                    vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
-                    }
-        }
-        else {
-            var vaccsOrigCopy = angular.copy($scope.getVaccination());
-            var vaccination = angular.copy(vaccination);
-            vaccination.administered = true;
-            vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
-        }
+        var vaccsOrigCopy = angular.copy($scope.getVaccination());
+        var vaccination = angular.copy(vaccination);
+        vaccination.administered = true;
+        vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
     };
 
 

@@ -575,11 +575,9 @@
 
                     <div class="form-group">
                         <label>Expiry Date</label>
-                        <input name="expiry_date" class="form-control" type="date"  max="9999-12-31" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
+                        <input name="expiry_date" class="form-control" type="date" max="9999-12-31" ng-model="enteredAdminFormData.expiry_date" placeholder="Expiry Date" required on-keyup keys="[13]">
                     </div>
                     <feedback warn="form.expiry_date.$error.required || form.expiry_date.$error.date" warning="Enter a valid expiry date."></feedback>
-EDITED HERE*****                    <feedback warn="form.expiry_date < dropDownData.today" warning="This Vaccine is Expired!"> </feedback>
-
                     <div class="form-button-wrapper">
                         <!-- cannot delete scheduled vaccines only modify. -->
                         <button type="button" class="btn btn-danger" ng-if="!enteredAdminFormData.scheduled" ng-click="deleteVaccination(enteredAdminFormData)" on-keyup keys="[13]">Delete</button>

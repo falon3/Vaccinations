@@ -43,12 +43,21 @@ angular.module('vaccinations')
     // Called when vaccination data from form has been validated
     // and ready to create a new vaccination event.
     $scope.submitVaccination = function(vaccination) {
-        var vaccsOrigCopy = angular.copy($scope.getVaccination());
-        var vaccination = angular.copy(vaccination);
-        vaccination.administered = true;
-        vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
+        if ($scope.enteredAdminFormData.expiry_date <= (new Date())) {
+            if (confirm('Vaccine is expired, are you sure you want to administer?')){
+                var vaccsOrigCopy = angular.copy($scope.getVaccination());
+                var vaccination = angular.copy(vaccination);
+                vaccination.administered = true;
+                vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
+            }
+        }
+        else {
+             var vaccsOrigCopy = angular.copy($scope.getVaccination());
+              var vaccination = angular.copy(vaccination);
+              vaccination.administered = true;
+              vaccinationsManager.submitVaccination(vaccination, vaccsOrigCopy);
+              }
     };
-
 
     $scope.rescheduleVaccination = function(vaccination) {
         var vaccsOrigCopy = angular.copy($scope.getVaccination());
